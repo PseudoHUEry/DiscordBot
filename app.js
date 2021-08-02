@@ -1,18 +1,25 @@
+//Server Web
+const _ex = require('express'),
+app = _ex(),
+port = 3000,
+home = require('./homepage/routerHomepage.js')
+
+app.use('/', (req , res) => res.send('<title> Bem vindo!</title>'))
+app.listen(port, () => console.log('Servidor Web - online'))
+
+// DISCORD
 const Discord = require('discord.js'),
 client = new Discord.Client(),
-config = require('./config.json'),
-texts = require('./texts/texts.json')
+config = require('./HUEry/config.json'),
+helper = require('./HUEry/helper.js')
+
+client.once('ready', () => console.log('Servidor Discord - online'))
 
 client.login(config.BOT_TOKEN)
 
-client.on('message', message => {
-    if( message.content == `${config.prefix}ola`) {
-        message.channel.send("Primeiramente, bom dia!" && "Vai tomar no Cu!")
+client.on("message", message => {
+    let valid = message.content.split(' ')
     }
-})
+)
 
-client.on('message', message => {
-    if( message.content == `${config.prefix}game`) {
-        message.channel.send(`Fale uma frase com: ${texts.significado[Math.floor(Math.random() * texts.significado.length)].toUpperCase()}.`)
-    }
-})
+    
