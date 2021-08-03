@@ -1,16 +1,34 @@
-const phase = require('./phases.js');
+// // Server Web
+// const _ex = require("express"),
+//   app = _ex(),
+//   port = 3000,
+//   home = require("./homepage/routerHomepage.js");
 
-const Discord = require('discord.js'),
-config = require('./config.json'),
-client = new Discord.Client()
-phases = require('./phases.js')
+//   app.use(port, (req, res) => {
+//     res.send("<h1> Bem vindo! </h1>")
+//     client.on (helper[2].comand('', 'Na página web')    
+// )});
+
+// DISCORD
+const Discord = require("discord.js"),
+  client = new Discord.Client(),
+  config = require("./HUEry/config.json"),
+  helper = require("./HUEry/helper.js");
+
+client.once("ready", () => console.log("Servidor Discord - online"));
+
 client.login(config.BOT_TOKEN);
 
+client.on("message", message => {
+  let arr = message.content.split(" ");
 
-client.on('message', message => {
-    if(message.content == "!hello"){
-        phase.forEach(x => message.channel.send(x))
-    }
+    helper.forEach(x => {
+    const {call, functionName, comand} = x
+     if (`${call}${functionName}` == arr[0]){
+        comand(message)
+        }
+    });
 });
 
 
+// Integrate
